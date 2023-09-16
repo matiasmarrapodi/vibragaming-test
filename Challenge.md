@@ -10,7 +10,7 @@ En los últimos días también hubo un incremento del uso de la aplicación (se 
 que no) y definir soluciones/mejoras alternativas
 
 
-#  Diagonostico RDS
+#  Diagnostico RDS
 Analizaria en el servicio RDS:
 
 ● Las metricas (cpu, memoria, storage) del servicio de RDS para detectar la fecha en la que comenzó el incidente.
@@ -47,7 +47,7 @@ Suponiendo que el incidente sea generado por una nueva query con un alto costo l
 
 ● Analizaria el costo de la query ejecutando un explain analyze. Si la misma necesita un indice ver la posibilidad de crearlo. (Esto requiere un analisis y seguramente en ambientes productivos se necesite una ventana. La creacion de un indice puede generar lockeos).
  
-● Evaluaria particionar las tablas con muchos registros para asi aliviar las consultas. Tambie deberian tener un mantenimiento con frecuencia de vaccum analyze de al menos cada 3 meses como para ordenar los blocks.
+● Evaluaria particionar las tablas con muchos registros para asi aliviar las consultas. Tambien deberian tener un mantenimiento con frecuencia de vaccum analyze de al menos cada 3 meses como para ordenar los blocks.
 
 ● Si no es posible realizar mantenimiento, se podria crear instancias de solo lectura en RDS para que asi poder disminuir la carga en la instancia "writer" reduciendo el riesgo de poder tener respuestas lentas y caidas.
 
