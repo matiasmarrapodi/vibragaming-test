@@ -10,9 +10,7 @@ En los últimos días también hubo un incremento del uso de la aplicación (se 
 que no) y definir soluciones/mejoras alternativas
 
 
-1)
-
-# RDS
+#  Diagonostico RDS
 Analizaria en el servicio RDS:
 
 ● Las metricas (cpu, memoria, storage) del servicio de RDS para detectar la fecha en la que comenzó el incidente.
@@ -29,7 +27,7 @@ Si es una tabla muy grande como en este caso, podriamos limitar el numero de los
 ● Otro de los posibles incidentes puede ser que la tabla este siendo lockeada, en ese caso habria que detectar cual es el proceso que la esta lockeando y proceder a killearlo siempre y cuando sea posible. Existen queries para detectar estos lockeos que se crean haciendo un join entre las tablas pg_stat_activity y pg_locks.
 
 
-# Kubernetes 
+# Diagnostico Kubernetes 
 En cuanto al cluster de kubernetes revisaria:
 
 ● Las metricas (kubectl top) para monitorear los recursos de los pods y los nodos del clúster. Si los pods no tienen suficientes recursos de CPU y memoria asignados, pueden experimentar cuellos de botella que afecten el rendimiento de la app.
@@ -38,9 +36,7 @@ En cuanto al cluster de kubernetes revisaria:
 ● Los pods. Los mismos pueden estar crasheando si estan sobrecargados y el cluster no logra escalar. 
 
 
-2) 
-
-# RDS
+# Solucion RDS
 
 Suponiendo que el incidente sea generado por una nueva query con un alto costo lo que haria seria:
 
@@ -50,7 +46,7 @@ Suponiendo que el incidente sea generado por una nueva query con un alto costo l
 ● Si no es posible realizar mantenimiento, se podria crear instancias de solo lectura en RDS para que asi poder disminuir la carga en la instancia "writer" reduciendo el riesgo de poder tener respuestas lentas y caidas.
 ● Finalmente si no se pudo reducir los tiempos, habria que agregarle mas recursos a la instancia de RDS, optando por un instance type mayor.
 
-# Kubernetes:
+# Solucion Kubernetes:
 
 Suponiendo que tengamos un problema de escalamiento en los pods lo que haria seria:
 
